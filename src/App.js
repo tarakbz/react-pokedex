@@ -1,13 +1,28 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import Pokemon from "./models/pokemon";
-import {Button, Container} from "@material-ui/core";
+import {Button, Container, Grid, makeStyles, Paper} from "@material-ui/core";
 
 function App() {
 
     const [pokemons, setPokemon] = useState([]);
     const [loading, setLoading] = useState(false)
-
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            flexGrow: 1,
+        },
+        paper: {
+            height: 140,
+            width: 100,
+        },
+        control: {
+            padding: theme.spacing(2),
+        },
+        name : {
+            textAlign : "center",
+            padding : 20,
+        }
+    }));
     useEffect(() => {
         fetch('https://limitless-reef-40594.herokuapp.com/api/pokemons')
             .then(
@@ -26,7 +41,9 @@ function App() {
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
             })
-    }, [])
+    }, []);
+
+    const classes = useStyles();
 
     function showCountPokemon(text) {
         console.log(text)
@@ -39,13 +56,21 @@ function App() {
                 (
                     <div>
                         <h3>il y a {pokemons.length} pokemons!</h3>
-                        <ul>
+                        <Grid container className={classes.root} spacing={2}>
                             {
-                                pokemons.map(({id, name}) => (
-                                    <li key={id}>{name}</li>
+                                pokemons.map(({id, name, picture , created}) => (
+                                    <Grid item key={id}>
+                                        <Paper>
+                                            <img src={picture} alt=""/>
+                                            <p className={classes.name}>
+                                                {name} <br/>
+                                                <small>{created.toString()}</small>
+                                            </p>
+                                        </Paper>
+                                    </Grid>
                                 ))
                             }
-                        </ul>
+                        </Grid>
                     </div>
                 ) :
                 (
