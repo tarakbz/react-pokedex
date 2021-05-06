@@ -1,7 +1,7 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import Pokemon from "./models/pokemon";
-import {Button, Container, Grid, makeStyles, Paper} from "@material-ui/core";
+import {Button, Container, Grid, LinearProgress, makeStyles, Paper} from "@material-ui/core";
 
 function App() {
 
@@ -79,7 +79,7 @@ function App() {
                     </div>
                 ) :
                 (
-                    <h3>chargement...</h3>
+                    <LinearProgress />
                 )
             }
             <Button variant="contained" onClick={() => showCountPokemon("hello event")}>Voir le nombre de
