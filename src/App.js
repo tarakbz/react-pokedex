@@ -1,13 +1,16 @@
 import './App.css';
 import {useState} from "react";
+import Pokemon from "./models/pokemon"
+import POKEMONS from "./models/mock-pokemon";
 
 function App() {
 
-    const [name, setName] = useState("react state")
+    const [pokemons] = useState(POKEMONS)
 
     return (
         <div>
-            <h1>Hello {name} !</h1>
+            <h1>Pokedex</h1>
+            <h3>il y a {pokemons.length} pokemons!</h3>
         </div>
     );
 }
