@@ -7,6 +7,7 @@ import {Button, Container} from "@material-ui/core";
 function App() {
 
     const [pokemons, setPokemon] = useState([]);
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         fetch('https://limitless-reef-40594.herokuapp.com/api/pokemons')
@@ -19,7 +20,8 @@ function App() {
                     }
                     // Examine the text in the response
                     response.json().then(function (data) {
-                        setPokemon(data.data)
+                        setPokemon(data.data);
+                        setLoading(true);
                     });
                 })
             .catch(function (err) {
@@ -30,11 +32,18 @@ function App() {
     function showCountPokemon(text) {
         console.log(text)
     }
-    
+
     return (
         <Container>
             <h1>Pokedex</h1>
-            <h3>il y a {pokemons.length} pokemons!</h3>
+            {loading ?
+                (
+                    <h3>il y a {pokemons.length} pokemons!</h3>
+                ) :
+                (
+                    <h3>chargement...</h3>
+                )
+            }
             <Button variant="contained" onClick={() => showCountPokemon("hello event")}>Voir le nombre de
                 pokemons</Button>
         </Container>
