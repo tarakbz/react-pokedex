@@ -64,7 +64,12 @@ function App() {
                                             <img src={picture} alt=""/>
                                             <p className={classes.name}>
                                                 {name} <br/>
-                                                <small>{created.toString()}</small>
+                                                <small>
+                                                    {
+                                                        new Intl.DateTimeFormat(
+                                                        ).format(new Date(created))
+                                                    }
+                                                </small>
                                             </p>
                                         </Paper>
                                     </Grid>
