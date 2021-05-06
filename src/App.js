@@ -1,7 +1,6 @@
 import './App.css';
 import {useEffect, useState} from "react";
-import Pokemon from "./models/pokemon"
-import POKEMONS from "./models/mock-pokemon";
+import Pokemon from "./models/pokemon";
 import {Button, Container} from "@material-ui/core";
 
 function App() {
@@ -38,7 +37,16 @@ function App() {
             <h1>Pokedex</h1>
             {loading ?
                 (
-                    <h3>il y a {pokemons.length} pokemons!</h3>
+                    <div>
+                        <h3>il y a {pokemons.length} pokemons!</h3>
+                        <ul>
+                            {
+                                pokemons.map(pokemon => (
+                                    <li key={pokemon.id}>{pokemon.name}</li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 ) :
                 (
                     <h3>chargement...</h3>
