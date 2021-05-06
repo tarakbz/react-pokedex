@@ -1,7 +1,6 @@
 import './App.css';
 import {useEffect, useState} from "react";
-import Pokemon from "./models/pokemon";
-import {Button, Container, Grid, LinearProgress, makeStyles, Paper} from "@material-ui/core";
+import {Container, Grid, LinearProgress, makeStyles, Paper} from "@material-ui/core";
 import PokemonCard from "./components/pokemon-card";
 
 function App() {
@@ -21,9 +20,11 @@ function App() {
         },
         name: {
             textAlign: "center",
-            padding: 20,
+            padding: theme.spacing(2),
         }
     }));
+    const classes = useStyles();
+
     useEffect(() => {
         fetch('https://limitless-reef-40594.herokuapp.com/api/pokemons')
             .then(
@@ -43,12 +44,6 @@ function App() {
                 console.log('Fetch Error :-S', err);
             })
     }, []);
-
-    const classes = useStyles();
-
-    function showCountPokemon(text) {
-        console.log(text)
-    }
 
     return (
         <Container>
@@ -74,8 +69,6 @@ function App() {
                     <LinearProgress/>
                 )
             }
-            <Button variant="contained" onClick={() => showCountPokemon("hello event")}>Voir le nombre de
-                pokemons</Button>
         </Container>
     );
 }
