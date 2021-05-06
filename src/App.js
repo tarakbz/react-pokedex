@@ -2,13 +2,13 @@ import './App.css';
 import {useEffect, useState} from "react";
 import Pokemon from "./models/pokemon"
 import POKEMONS from "./models/mock-pokemon";
+import {Button, Container} from "@material-ui/core";
 
 function App() {
 
     const [pokemons, setPokemon] = useState([]);
 
     useEffect(() => {
-
         fetch('https://limitless-reef-40594.herokuapp.com/api/pokemons')
             .then(
                 response => {
@@ -27,11 +27,17 @@ function App() {
             })
     }, [])
 
+    function showCountPokemon(text) {
+        console.log(text)
+    }
+    
     return (
-        <div>
+        <Container>
             <h1>Pokedex</h1>
             <h3>il y a {pokemons.length} pokemons!</h3>
-        </div>
+            <Button variant="contained" onClick={() => showCountPokemon("hello event")}>Voir le nombre de
+                pokemons</Button>
+        </Container>
     );
 }
 
