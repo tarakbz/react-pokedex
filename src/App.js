@@ -2,6 +2,7 @@ import './App.css';
 import {useEffect, useState} from "react";
 import Pokemon from "./models/pokemon";
 import {Button, Container, Grid, LinearProgress, makeStyles, Paper} from "@material-ui/core";
+import PokemonCard from "./components/pokemon-card";
 
 function App() {
 
@@ -18,9 +19,9 @@ function App() {
         control: {
             padding: theme.spacing(2),
         },
-        name : {
-            textAlign : "center",
-            padding : 20,
+        name: {
+            textAlign: "center",
+            padding: 20,
         }
     }));
     useEffect(() => {
@@ -58,19 +59,10 @@ function App() {
                         <h3>il y a {pokemons.length} pokemons!</h3>
                         <Grid container className={classes.root} spacing={2}>
                             {
-                                pokemons.map(({id, name, picture , created}) => (
-                                    <Grid item key={id}>
+                                pokemons.map((pokemon) => (
+                                    <Grid item key={pokemon.id}>
                                         <Paper>
-                                            <img src={picture} alt=""/>
-                                            <p className={classes.name}>
-                                                {name} <br/>
-                                                <small>
-                                                    {
-                                                        new Intl.DateTimeFormat(
-                                                        ).format(new Date(created))
-                                                    }
-                                                </small>
-                                            </p>
+                                            <PokemonCard pokemon={pokemon} classes={classes}/>
                                         </Paper>
                                     </Grid>
                                 ))
@@ -79,7 +71,7 @@ function App() {
                     </div>
                 ) :
                 (
-                    <LinearProgress />
+                    <LinearProgress/>
                 )
             }
             <Button variant="contained" onClick={() => showCountPokemon("hello event")}>Voir le nombre de
