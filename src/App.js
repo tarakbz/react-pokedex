@@ -1,9 +1,10 @@
 import './App.css';
 
 function App() {
+    const name = "tarak";
     return (
         <div>
-            hello react
+            hello {name}
         </div>
     );
 }
