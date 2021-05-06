@@ -1,10 +1,13 @@
 import './App.css';
+import {useState} from "react";
 
 function App() {
-    const name = "tarak";
+
+    const [name, setName] = useState("react state")
+
     return (
         <div>
-            hello {name}
+            <h1>Hello {name} !</h1>
         </div>
     );
 }
