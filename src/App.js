@@ -41,8 +41,8 @@ function App() {
                         <h3>il y a {pokemons.length} pokemons!</h3>
                         <ul>
                             {
-                                pokemons.map(pokemon => (
-                                    <li key={pokemon.id}>{pokemon.name}</li>
+                                pokemons.map(({id, name}) => (
+                                    <li key={id}>{name}</li>
                                 ))
                             }
                         </ul>
