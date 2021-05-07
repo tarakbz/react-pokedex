@@ -17,16 +17,16 @@ export default function PokemonCard({pokemon, classes}) {
     return (
         <Paper elevation={elevation} onMouseLeave={setDown} onMouseEnter={setUp}>
             <img src={pokemon.picture} alt=""/>
-            <p className={classes.name}>
+            <div className={classes.name}>
                 {pokemon.name} <br/>
                 <small> {formatDate(pokemon.created)}</small>
                 <br/>
                 {
-                    pokemon.types.map(type => (
-                        <Chip label={type} style={{marginRight: 5, backgroundColor: formatType(type), color: "white"}}/>
+                    pokemon.types.map((type, index) => (
+                        <Chip key={index} label={type} style={{marginRight: 5, backgroundColor: formatType(type), color: "white"}}/>
                     ))
                 }
-            </p>
+            </div>
         </Paper>
     );
 }
