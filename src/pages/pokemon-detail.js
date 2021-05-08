@@ -1,5 +1,5 @@
-import {Chip, LinearProgress, Paper} from "@material-ui/core";
-import {useParams} from 'react-router-dom';
+import {Button, Chip, LinearProgress, Paper} from "@material-ui/core";
+import {Link, useParams} from 'react-router-dom';
 import formatDate from "../helpers/format-date";
 import formatType from "../helpers/format-type";
 import usePokemon from "../hooks/pokemon.hook";
@@ -26,6 +26,9 @@ export default function PokemonDetails({classes}) {
                                 ))
                             }
                         </div>
+                        <Button component={Link} to="/">
+                            Return to pokedex
+                        </Button>
                     </Paper>
                 )
                 :
