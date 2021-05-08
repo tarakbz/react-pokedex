@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import PokemonList from "./pages/pokemon-list";
 import PokemonDetails from "./pages/pokemon-detail";
+import PageNotFound from "./pages/page-not-found";
 
 function App() {
 
@@ -53,6 +54,9 @@ function App() {
                     </Route>
                     <Route exact path="/pokemons/:id" >
                         <PokemonDetails classes={classes}/>
+                    </Route>
+                    <Route path="*">
+                        <PageNotFound />
                     </Route>
                 </Switch>
             </Container>
