@@ -2,7 +2,7 @@ import {Chip, Paper, TextField} from "@material-ui/core";
 
 import formatType from "../helpers/format-type";
 
-const PokemonForm = ({pokemon, classes}) => {
+const PokemonForm = ({pokemon}) => {
     const types = [
         'Plante', 'Feu', 'Eau', 'Insecte', 'Normal', 'Electrik',
         'Poison', 'Fée', 'Vol', 'Combat', 'Psy'

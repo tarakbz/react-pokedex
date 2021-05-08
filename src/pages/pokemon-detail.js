@@ -1,5 +1,6 @@
-import {Button, Chip, LinearProgress, Paper} from "@material-ui/core";
+import {Button, Chip, IconButton, LinearProgress, Paper} from "@material-ui/core";
 import {Link, useParams} from 'react-router-dom';
+import EditIcon from '@material-ui/icons/Edit';
 import formatDate from "../helpers/format-date";
 import formatType from "../helpers/format-type";
 import usePokemon from "../hooks/pokemon.hook";
@@ -14,6 +15,9 @@ export default function PokemonDetails({classes}) {
             {loading ?
                 (
                     <Paper style={{textAlign: "center"}}>
+                        <IconButton component={Link} to={`/pokemons/edit/${id}`}>
+                            <EditIcon/>
+                        </IconButton>
                         <img src={pokemon.picture} alt=""/>
                         <div className={classes.name}>
                             {pokemon.name} <br/>

@@ -12,7 +12,7 @@ const PokemonEdit = ({classes}) => {
                 (
                     <>
                         <h2>Edit : {pokemon.name}</h2>
-                        <PokemonForm pokemon={pokemon} classes={classes}/>
+                        <PokemonForm pokemon={pokemon}/>
                     </>
                 )
                 :
