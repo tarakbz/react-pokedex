@@ -1,5 +1,5 @@
 import './App.css';
-import {AppBar, Container, makeStyles, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Container, CssBaseline, makeStyles, Toolbar, Typography} from "@material-ui/core";
 import HomeIcon from '@material-ui/icons/Home';
 import {
     BrowserRouter as Router,
@@ -10,6 +10,7 @@ import {
 import PokemonList from "./pages/pokemon-list";
 import PokemonDetails from "./pages/pokemon-detail";
 import PageNotFound from "./pages/page-not-found";
+import PokemonEdit from "./pages/pokemon-edit-js";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
 
     return (
         <Router>
+            <CssBaseline />
             <Container>
                 <AppBar position="relative" style={{backgroundColor: "#67A2B6"}}>
                     <Toolbar>
@@ -54,6 +56,9 @@ function App() {
                     </Route>
                     <Route exact path="/pokemons/:id" >
                         <PokemonDetails classes={classes}/>
+                    </Route>
+                    <Route exact path="/pokemons/edit/:id" >
+                        <PokemonEdit classes={classes}/>
                     </Route>
                     <Route path="*">
                         <PageNotFound />
