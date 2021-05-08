@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 
-const usePokemons = () => {
-    const [pokemons, setPokemons] = useState([]);
+const usePokemon = (id) => {
+    const [pokemon, setPokemon] = useState([]);
     const [loading, setLoading] = useState(false)
     useEffect(() => {
-        fetch('https://limitless-reef-40594.herokuapp.com/api/pokemons')
+        fetch(`https://limitless-reef-40594.herokuapp.com/api/pokemons/${id}`)
             .then(
                 response => {
                     if (response.status !== 200) {
@@ -14,14 +14,14 @@ const usePokemons = () => {
                     }
                     // Examine the text in the response
                     response.json().then(function (data) {
-                        setPokemons(data.data);
+                        setPokemon(data.data);
                         setLoading(true);
                     });
                 })
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
             })
-    }, []);
-    return [pokemons, loading];
+    }, [id]);
+    return [pokemon, loading];
 }
-export default usePokemons;
+export default usePokemon;

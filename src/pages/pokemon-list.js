@@ -1,5 +1,5 @@
 import {Grid, LinearProgress} from "@material-ui/core";
-import PokemonCard from "./pokemon-card";
+import PokemonCard from "../components/pokemon-card";
 import usePokemons from "../hooks/pokemons.hook";
 
 export default function PokemonList({classes}) {
@@ -22,7 +22,8 @@ export default function PokemonList({classes}) {
                             }
                         </Grid>
                     </div>
-                ) :
+                )
+                :
                 (
                     <LinearProgress/>
                 )

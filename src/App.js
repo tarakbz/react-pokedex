@@ -1,6 +1,6 @@
 import './App.css';
 import {Container, makeStyles} from "@material-ui/core";
-import PokemonList from "./components/pokemon-list";
+import PokemonList from "./pages/pokemon-list";
 
 function App() {
 
