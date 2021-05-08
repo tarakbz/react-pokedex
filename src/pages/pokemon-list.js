@@ -10,18 +10,18 @@ export default function PokemonList({classes}) {
         <>
             {loading ?
                 (
-                    <div>
+                    <>
                         <h3>il y a {pokemons.length} pokemons!</h3>
-                        <Grid container className={classes.root} spacing={2}>
+                        <Grid container spacing={2}>
                             {
                                 pokemons.map((pokemon) => (
                                     <Grid item key={pokemon.id}>
-                                        <PokemonCard pokemon={pokemon} classes={classes}/>
+                                        <PokemonCard pokemon={pokemon}/>
                                     </Grid>
                                 ))
                             }
                         </Grid>
-                    </div>
+                    </>
                 )
                 :
                 (

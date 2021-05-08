@@ -1,4 +1,4 @@
-import {Chip, Paper, TextField} from "@material-ui/core";
+import {Chip, TextField} from "@material-ui/core";
 
 import formatType from "../helpers/format-type";
 
@@ -8,32 +8,19 @@ const PokemonForm = ({pokemon}) => {
         'Poison', 'Fée', 'Vol', 'Combat', 'Psy'
     ];
     return (
-        <form style={{textAlign: "center"}}>
+        <form>
             <img src={pokemon.picture} alt=""/>
-            <div>
-                <TextField
-                    label="Name"
-                    defaultValue={pokemon.name}
-                />
-            </div>
-            <div>
-                <Paper component="ul" style={{listStyle: "none"}}>
-                    {types.map((type) => {
-                        return (
-                            <li key={type}>
-                                <Chip style={{
-                                    margin: 5,
-                                    backgroundColor: formatType(type),
-                                    color: "white",
-                                    float: "left"
-                                }}
-                                      label={type}
-                                />
-                            </li>
-                        );
-                    })}
-                </Paper>
-            </div>
+            <TextField
+                label="Name"
+                defaultValue={pokemon.name}
+            />
+            {types.map((type) => {
+                return (
+                    <Chip key={type} style={{backgroundColor: formatType(type)}}
+                          label={type}
+                    />
+                );
+            })}
         </form>
     );
 }

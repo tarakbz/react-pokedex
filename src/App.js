@@ -1,5 +1,5 @@
 import './App.css';
-import {AppBar, Container, CssBaseline, makeStyles, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Container, CssBaseline, IconButton, Toolbar, Typography} from "@material-ui/core";
 import HomeIcon from '@material-ui/icons/Home';
 import {
     BrowserRouter as Router,
@@ -13,55 +13,32 @@ import PageNotFound from "./pages/page-not-found";
 import PokemonEdit from "./pages/pokemon-edit-js";
 
 function App() {
-
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            flexGrow: 1,
-        },
-        paper: {
-            height: 140,
-            width: 100,
-        },
-        control: {
-            padding: theme.spacing(2),
-        },
-        name: {
-            textAlign: "center",
-            padding: theme.spacing(2),
-        },
-        icon: {
-            marginRight: theme.spacing(2),
-        },
-    }));
-
-    const classes = useStyles();
-
     return (
         <Router>
-            <CssBaseline />
+            <CssBaseline/>
             <Container>
-                <AppBar position="relative" style={{backgroundColor: "#67A2B6"}}>
+                <AppBar style={{backgroundColor: "#67A2B6" , position: "relative"}}>
                     <Toolbar>
-                        <Link to="/" style={{color: "#fff"}}>
-                            <HomeIcon className={classes.icon}/>
-                        </Link>
+                        <IconButton component={Link} to={`/`}>
+                            <HomeIcon/>
+                        </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
                             POKEDEX
                         </Typography>
                     </Toolbar>
                 </AppBar>
                 <Switch>
-                    <Route exact path="/" >
-                        <PokemonList classes={classes}/>
+                    <Route exact path="/">
+                        <PokemonList/>
                     </Route>
-                    <Route exact path="/pokemons/:id" >
-                        <PokemonDetails classes={classes}/>
+                    <Route exact path="/pokemons/:id">
+                        <PokemonDetails/>
                     </Route>
-                    <Route exact path="/pokemons/edit/:id" >
-                        <PokemonEdit classes={classes}/>
+                    <Route exact path="/pokemons/edit/:id">
+                        <PokemonEdit/>
                     </Route>
                     <Route path="*">
-                        <PageNotFound />
+                        <PageNotFound/>
                     </Route>
                 </Switch>
             </Container>
