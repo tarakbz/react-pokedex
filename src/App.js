@@ -1,6 +1,14 @@
 import './App.css';
-import {Container, makeStyles} from "@material-ui/core";
+import {AppBar, Container, makeStyles, Toolbar, Typography} from "@material-ui/core";
+import HomeIcon from '@material-ui/icons/Home';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 import PokemonList from "./pages/pokemon-list";
+import PokemonDetails from "./pages/pokemon-detail";
 
 function App() {
 
@@ -18,16 +26,37 @@ function App() {
         name: {
             textAlign: "center",
             padding: theme.spacing(2),
-        }
+        },
+        icon: {
+            marginRight: theme.spacing(2),
+        },
     }));
 
     const classes = useStyles();
 
     return (
-        <Container>
-            <h1>Pokedex</h1>
-            <PokemonList classes={classes}/>
-        </Container>
+        <Router>
+            <Container>
+                <AppBar position="relative" style={{backgroundColor: "#67A2B6"}}>
+                    <Toolbar>
+                        <Link to="/" style={{color: "#fff"}}>
+                            <HomeIcon className={classes.icon}/>
+                        </Link>
+                        <Typography variant="h6" color="inherit" noWrap>
+                            POKEDEX
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <Switch>
+                    <Route exact path="/" >
+                        <PokemonList classes={classes}/>
+                    </Route>
+                    <Route exact path="/pokemons/:id" >
+                        <PokemonDetails classes={classes}/>
+                    </Route>
+                </Switch>
+            </Container>
+        </Router>
     );
 }
 
