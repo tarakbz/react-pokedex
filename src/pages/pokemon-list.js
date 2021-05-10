@@ -1,8 +1,8 @@
-import {Grid, LinearProgress} from "@material-ui/core";
+import {Grid, LinearProgress, Typography} from "@material-ui/core";
 import PokemonCard from "../components/pokemon-card";
 import usePokemons from "../hooks/pokemons.hook";
 
-export default function PokemonList({classes}) {
+export default function PokemonList() {
 
     const [pokemons, loading] = usePokemons()
 
@@ -11,11 +11,11 @@ export default function PokemonList({classes}) {
             {loading ?
                 (
                     <>
-                        <h3>il y a {pokemons.length} pokemons!</h3>
-                        <Grid container spacing={2}>
+                        <Typography variant={"h4"}>il y a {pokemons.length} pokemons!</Typography>
+                        <Grid container spacing={4}>
                             {
                                 pokemons.map((pokemon) => (
-                                    <Grid item key={pokemon.id}>
+                                    <Grid item xs={4} key={pokemon.id}>
                                         <PokemonCard pokemon={pokemon}/>
                                     </Grid>
                                 ))

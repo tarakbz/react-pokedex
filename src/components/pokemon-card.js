@@ -1,4 +1,4 @@
-import {Chip, Paper} from "@material-ui/core";
+import {Avatar, Card, CardContent, CardHeader, CardMedia, Chip} from "@material-ui/core";
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import formatDate from "../helpers/format-date";
@@ -10,7 +10,7 @@ export default function PokemonCard({pokemon}) {
     const history = useHistory();
 
     const setUp = () => {
-        setElevation(6)
+        setElevation(24)
     }
 
     const setDown = () => {
@@ -21,17 +21,30 @@ export default function PokemonCard({pokemon}) {
         history.push(`/pokemons/${id}`)
     }
     return (
-        <Paper elevation={elevation} onClick={() => goToPokemon(pokemon.id)} onMouseLeave={setDown}
-               onMouseEnter={setUp}>
-            <img src={pokemon.picture} alt=""/>
-            {pokemon.name}
-            {formatDate(pokemon.created)}
-            {
-                pokemon.types.map((type, index) => (
-                    <Chip key={index} label={type}
-                          style={{backgroundColor: formatType(type)}}/>
-                ))
-            }
-        </Paper>
+        <Card elevation={elevation} onClick={() => goToPokemon(pokemon.id)} onMouseLeave={setDown}
+              onMouseEnter={setUp}>
+            <CardHeader
+                avatar={
+                    <Avatar>
+                        {pokemon.name.charAt(0)}
+                    </Avatar>
+                }
+                title={pokemon.name}
+                subheader={"Created: " + formatDate(pokemon.created)}
+            />
+            <CardMedia style={{height: 0, paddingTop: '100%'}}
+                       image={pokemon.picture}
+                       title={pokemon.name}
+            />
+            <CardContent>
+                {
+                    pokemon.types.map((type, index) => (
+                        <Chip key={index} label={type}
+                              style={{backgroundColor: formatType(type)}}/>
+                    ))
+                }
+            </CardContent>
+
+        </Card>
     );
 }
