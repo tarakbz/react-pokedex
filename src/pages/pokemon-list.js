@@ -15,7 +15,7 @@ export default function PokemonList() {
                         <Grid container spacing={4}>
                             {
                                 pokemons.map((pokemon) => (
-                                    <Grid item xs={3} key={pokemon.id}>
+                                    <Grid item xs={12} sm={6} md={3} key={pokemon.id}>
                                         <PokemonCard pokemon={pokemon}/>
                                     </Grid>
                                 ))
