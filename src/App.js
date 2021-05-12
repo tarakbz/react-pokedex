@@ -7,41 +7,50 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import {ThemeProvider} from '@material-ui/core/styles';
+
 import PokemonList from "./pages/pokemon-list";
 import PokemonDetails from "./pages/pokemon-detail";
 import PageNotFound from "./pages/page-not-found";
 import PokemonEdit from "./pages/pokemon-edit-js";
+import theme from "./styles/theme";
+import style from "./styles/style";
 
 function App() {
+
+    const classes = style();
+
     return (
         <Router>
             <CssBaseline/>
-            <Container>
-                <AppBar style={{backgroundColor: "#67A2B6" , position: "relative"}}>
-                    <Toolbar>
-                        <IconButton component={Link} to={`/`}>
-                            <HomeIcon/>
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" noWrap>
-                            POKEDEX
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Switch>
-                    <Route exact path="/">
-                        <PokemonList/>
-                    </Route>
-                    <Route exact path="/pokemons/:id">
-                        <PokemonDetails/>
-                    </Route>
-                    <Route exact path="/pokemons/edit/:id">
-                        <PokemonEdit/>
-                    </Route>
-                    <Route path="*">
-                        <PageNotFound/>
-                    </Route>
-                </Switch>
-            </Container>
+            <ThemeProvider theme={theme}>
+                <Container>
+                    <AppBar className={classes.appBar}>
+                        <Toolbar>
+                            <IconButton  className={classes.menuButton}  edge="start" aria-label="menu">
+                                <HomeIcon />
+                            </IconButton>
+                            <Typography variant="h6" color="inherit" noWrap>
+                                POKEDEX
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <Switch>
+                        <Route exact path="/">
+                            <PokemonList/>
+                        </Route>
+                        <Route exact path="/pokemons/:id">
+                            <PokemonDetails/>
+                        </Route>
+                        <Route exact path="/pokemons/edit/:id">
+                            <PokemonEdit/>
+                        </Route>
+                        <Route path="*">
+                            <PageNotFound/>
+                        </Route>
+                    </Switch>
+                </Container>
+            </ThemeProvider>
         </Router>
     );
 }

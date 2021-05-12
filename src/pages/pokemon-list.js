@@ -11,7 +11,9 @@ export default function PokemonList() {
             {loading ?
                 (
                     <>
-                        <Typography variant={"h4"}>il y a {pokemons.length} pokemons!</Typography>
+                        <Typography variant={"h4"}>
+                            il y a {pokemons.length} pokemons!
+                        </Typography>
                         <Grid container spacing={4}>
                             {
                                 pokemons.map((pokemon) => (
