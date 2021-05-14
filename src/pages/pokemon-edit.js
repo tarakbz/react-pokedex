@@ -12,10 +12,7 @@ const PokemonEdit = () => {
         <>
             {loading ?
                 (
-                    <>
-                        <h2>Edit : {pokemon.name}</h2>
                         <PokemonForm pokemon={pokemon}/>
-                    </>
                 )
                 :
                 (

@@ -1,3 +1,4 @@
+
 const formatDate = (date) => {
     return new Intl.DateTimeFormat().format(new Date(date));
     // on peut aussi faire

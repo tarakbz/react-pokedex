@@ -25,6 +25,12 @@ const style = makeStyles(() => ({
         '&:nth-of-type(even)': {
             backgroundColor: theme.palette.action.hover,
         },
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+    },
+    paperForm: {
+        padding: theme.spacing(4)
     }
 }));
 
