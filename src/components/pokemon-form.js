@@ -32,6 +32,13 @@ const PokemonForm = ({pokemon}) => {
         return form.types.value.includes(type);
     }
 
+    const handleInputChange = (e) => {
+        const fieldName = e.target.name;
+        const fieldValue = e.target.value;
+        const newField = {[fieldName]: {value: fieldValue}};
+        setForm({...form, ...newField});
+    }
+
     return (
         <form className={classes.form} noValidate>
             <Grid container direction="column" spacing={4}>
@@ -42,23 +49,29 @@ const PokemonForm = ({pokemon}) => {
                     <TextField
                         fullWidth
                         label="Name"
+                        name="name"
                         value={form.name.value}
+                        onChange={e => handleInputChange(e)}
                     />
                 </Grid>
                 <Grid item>
                     <TextField
                         fullWidth
                         label="HP"
+                        name="hp"
                         value={form.hp.value}
                         type="number"
+                        onChange={e => handleInputChange(e)}
                     />
                 </Grid>
                 <Grid item>
                     <TextField
                         fullWidth
                         label="CP"
+                        name="cp"
                         value={form.cp.value}
                         type="number"
+                        onChange={e => handleInputChange(e)}
                     />
                 </Grid>
                 <Grid item>
