@@ -14,7 +14,9 @@ const style = makeStyles(() => ({
     chips: {
         flexWrap: 'wrap',
         '& > *': {
-            margin: theme.spacing(0.5),
+            marginTop: theme.spacing(0.5),
+            marginBottom: theme.spacing(0.5),
+            marginRight: theme.spacing(1),
             color: "white"
         },
 
