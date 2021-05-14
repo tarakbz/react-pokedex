@@ -9,6 +9,19 @@ const style = makeStyles(() => ({
     menuButton: {
         color: "white"
     },
+    chips: {
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: theme.spacing(0.5),
+            color: "white"
+        },
+
+    },
+    tableRow: {
+        '&:nth-of-type(even)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+    }
 }));
 
 export default style;

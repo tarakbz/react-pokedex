@@ -12,7 +12,7 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import PokemonList from "./pages/pokemon-list";
 import PokemonDetails from "./pages/pokemon-detail";
 import PageNotFound from "./pages/page-not-found";
-import PokemonEdit from "./pages/pokemon-edit-js";
+import PokemonEdit from "./pages/pokemon-edit";
 import theme from "./styles/theme";
 import style from "./styles/style";
 

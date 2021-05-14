@@ -1,8 +1,10 @@
-import {Chip, TextField} from "@material-ui/core";
+import {Checkbox, Chip, FormControlLabel, FormGroup, TextField} from "@material-ui/core";
 
 import formatType from "../helpers/format-type";
+import style from "../styles/style";
 
 const PokemonForm = ({pokemon}) => {
+    const classes = style();
     const types = [
         'Plante', 'Feu', 'Eau', 'Insecte', 'Normal', 'Electrik',
         'Poison', 'Fée', 'Vol', 'Combat', 'Psy'
@@ -14,13 +16,19 @@ const PokemonForm = ({pokemon}) => {
                 label="Name"
                 defaultValue={pokemon.name}
             />
-            {types.map((type) => {
-                return (
-                    <Chip key={type} style={{backgroundColor: formatType(type)}}
-                          label={type}
-                    />
-                );
-            })}
+            <FormGroup>
+                {types.map((type) => {
+                    return (
+                        <FormControlLabel
+                            key={type}
+                            control={<Checkbox/>}
+                            label={<Chip key={type} style={{color: "white", backgroundColor: formatType(type)}}
+                                         label={type}
+                            />}
+                        />
+                    );
+                })}
+            </FormGroup>
         </form>
     );
 }

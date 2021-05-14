@@ -3,8 +3,11 @@ import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import formatDate from "../helpers/format-date";
 import formatType from "../helpers/format-type";
+import style from "../styles/style";
 
 export default function PokemonCard({pokemon}) {
+
+    const classes = style();
 
     const [elevation, setElevation] = useState(1)
     const history = useHistory();
@@ -36,7 +39,7 @@ export default function PokemonCard({pokemon}) {
                        image={pokemon.picture}
                        title={pokemon.name}
             />
-            <CardContent>
+            <CardContent className={classes.chips}>
                 {
                     pokemon.types.map((type, index) => (
                         <Chip key={index} label={type}
