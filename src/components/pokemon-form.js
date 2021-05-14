@@ -1,7 +1,18 @@
-import {Checkbox, Chip, FormControlLabel, FormGroup, Grid, Paper, TextField, Typography} from "@material-ui/core";
+import {
+    Button, ButtonGroup,
+    Checkbox,
+    Chip,
+    FormControlLabel,
+    FormGroup,
+    Grid,
+    Paper,
+    TextField,
+    Typography
+} from "@material-ui/core";
 import formatType from "../helpers/format-type";
 import style from "../styles/style";
-
+import SaveIcon from '@material-ui/icons/Save';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const PokemonForm = ({pokemon}) => {
     const classes = style();
@@ -39,7 +50,7 @@ const PokemonForm = ({pokemon}) => {
                         />
                     </Grid>
                     <Grid item>
-                        <FormGroup>
+                        <FormGroup row>
                             {types.map((type) => {
                                 return (
                                     <FormControlLabel
@@ -53,6 +64,22 @@ const PokemonForm = ({pokemon}) => {
                                 );
                             })}
                         </FormGroup>
+                    </Grid>
+                    <Grid item>
+                        <ButtonGroup variant="contained">
+                            <Button
+                                color="primary"
+                                startIcon={<SaveIcon/>}
+                            >
+                                Save
+                            </Button>
+                            <Button
+                                color="secondary"
+                                startIcon={<CancelIcon/>}
+                            >
+                                Cancel
+                            </Button>
+                        </ButtonGroup>
                     </Grid>
                 </Grid>
             </form>
