@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
 import usePokemon from "../hooks/pokemon.hook";
 import PokemonForm from "../components/pokemon-form";
-import {LinearProgress, Paper, Typography} from "@material-ui/core";
+import {Divider, LinearProgress, Paper, Typography} from "@material-ui/core";
 import style from "../styles/style";
 
 
@@ -14,7 +14,8 @@ const PokemonEdit = () => {
             {loading ?
                 (
                     <Paper className={classes.paperForm}>
-                        <Typography variant="h5">Edit : {pokemon.name}</Typography>
+                        <Typography align="center" variant="h2">Edit {pokemon.name}</Typography>
+                        <Divider />
                         <PokemonForm pokemon={pokemon}/>
                     </Paper>
                 )

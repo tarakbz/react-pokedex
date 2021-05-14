@@ -22,7 +22,7 @@ const style = makeStyles(() => ({
 
     },
     tableRow: {
-        '&:nth-of-type(even)': {
+        '&:nth-of-type(odd)': {
             backgroundColor: theme.palette.action.hover,
         },
     },

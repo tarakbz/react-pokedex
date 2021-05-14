@@ -1,12 +1,12 @@
 import {
     Button, ButtonGroup,
-    Chip,
+    Chip, Divider, Grid,
     LinearProgress,
     Paper, Table,
     TableBody,
     TableCell,
     TableContainer,
-    TableRow
+    TableRow, Typography
 } from "@material-ui/core";
 import {Link, useParams} from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
@@ -26,23 +26,17 @@ export default function PokemonDetails() {
         <>
             {loading ?
                 (
-                    <>
-                        <TableContainer component={Paper}>
+                    <Paper className={classes.paperForm}>
+                        <Typography align="center" variant="h2">{pokemon.name}</Typography>
+                        <Divider />
+                        <Grid container direction="column" spacing={4}>
+                            <Grid item style={{textAlign: "center"}}>
+                                <img src={pokemon.picture} alt=""/>
+                            </Grid>
+                        </Grid>
+                        <TableContainer>
                             <Table>
                                 <TableBody>
-                                    <TableRow className={classes.tableRow}>
-                                        <TableCell colSpan={2} align="center">
-                                            <img src={pokemon.picture} alt=""/>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow className={classes.tableRow}>
-                                        <TableCell>
-                                            Name:
-                                        </TableCell>
-                                        <TableCell>
-                                            {pokemon.name}
-                                        </TableCell>
-                                    </TableRow>
                                     <TableRow className={classes.tableRow}>
                                         <TableCell>
                                             HP:
@@ -102,7 +96,7 @@ export default function PokemonDetails() {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                    </>
+                    </Paper>
                 )
                 :
                 (
