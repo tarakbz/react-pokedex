@@ -1,7 +1,6 @@
 import {
     Button, ButtonGroup,
     Chip,
-    IconButton,
     LinearProgress,
     Paper, Table,
     TableBody,
@@ -85,18 +84,18 @@ export default function PokemonDetails() {
                                     <TableRow className={classes.tableRow}>
                                         <TableCell colSpan={2}>
                                             <ButtonGroup variant="contained">
-                                            <Button
-                                                color="primary"
-                                                startIcon={<ArrowBackIos />}
-                                                component={Link} to="/">
-                                                Return to pokedex
-                                            </Button>
-                                            <Button
-                                                color="secondary"
-                                                startIcon={ <EditIcon/>}
-                                                component={Link} to={`/pokemons/edit/${id}`}>
-                                               Edit
-                                            </Button>
+                                                <Button
+                                                    color="primary"
+                                                    startIcon={<ArrowBackIos/>}
+                                                    component={Link} to="/">
+                                                    Return to pokedex
+                                                </Button>
+                                                <Button
+                                                    color="secondary"
+                                                    startIcon={<EditIcon/>}
+                                                    component={Link} to={`/pokemons/edit/${id}`}>
+                                                    Edit
+                                                </Button>
                                             </ButtonGroup>
                                         </TableCell>
                                     </TableRow>

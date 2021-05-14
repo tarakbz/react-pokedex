@@ -1,10 +1,10 @@
 import {Checkbox, Chip, FormControlLabel, FormGroup, TextField} from "@material-ui/core";
 
 import formatType from "../helpers/format-type";
-import style from "../styles/style";
+
 
 const PokemonForm = ({pokemon}) => {
-    const classes = style();
+
     const types = [
         'Plante', 'Feu', 'Eau', 'Insecte', 'Normal', 'Electrik',
         'Poison', 'Fée', 'Vol', 'Combat', 'Psy'

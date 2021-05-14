@@ -1,4 +1,4 @@
-import {Grid, LinearProgress, Typography} from "@material-ui/core";
+import {Grid, LinearProgress} from "@material-ui/core";
 import PokemonCard from "../components/pokemon-card";
 import usePokemons from "../hooks/pokemons.hook";
 
