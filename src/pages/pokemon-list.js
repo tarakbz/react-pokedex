@@ -10,20 +10,17 @@ export default function PokemonList() {
         <>
             {loading ?
                 (
-                    <>
-                        <Typography variant={"h4"}>
-                            il y a {pokemons.length} pokemons!
-                        </Typography>
-                        <Grid container spacing={4}>
-                            {
-                                pokemons.map((pokemon) => (
-                                    <Grid item xs={12} sm={6} md={3} key={pokemon.id}>
-                                        <PokemonCard pokemon={pokemon}/>
-                                    </Grid>
-                                ))
-                            }
-                        </Grid>
-                    </>
+
+                    <Grid container spacing={4}>
+                        {
+                            pokemons.map((pokemon) => (
+                                <Grid item xs={12} sm={6} md={3} key={pokemon.id}>
+                                    <PokemonCard pokemon={pokemon}/>
+                                </Grid>
+                            ))
+                        }
+                    </Grid>
+
                 )
                 :
                 (

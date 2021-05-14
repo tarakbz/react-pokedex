@@ -4,7 +4,9 @@ const {makeStyles} = require("@material-ui/core");
 
 const style = makeStyles(() => ({
     appBar: {
-        position: "relative"
+        position: "relative",
+        marginTop : theme.spacing(4),
+        marginBottom : theme.spacing(4)
     },
     menuButton: {
         color: "white"

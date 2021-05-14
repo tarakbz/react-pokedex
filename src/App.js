@@ -27,7 +27,7 @@ function App() {
                 <Container>
                     <AppBar className={classes.appBar}>
                         <Toolbar>
-                            <IconButton  className={classes.menuButton}  edge="start" aria-label="menu">
+                            <IconButton  component={Link}  to={"/"} className={classes.menuButton}  edge="start" aria-label="menu">
                                 <HomeIcon />
                             </IconButton>
                             <Typography variant="h6" color="inherit" noWrap>

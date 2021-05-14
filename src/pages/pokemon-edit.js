@@ -8,7 +8,6 @@ const PokemonEdit = () => {
     let {id} = useParams();
     const [pokemon, loading] = usePokemon(id);
 
-
     return (
         <>
             {loading ?
