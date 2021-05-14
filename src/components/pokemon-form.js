@@ -5,9 +5,7 @@ import {
     FormControlLabel,
     FormGroup,
     Grid,
-    Paper,
-    TextField,
-    Typography
+    TextField
 } from "@material-ui/core";
 import formatType from "../helpers/format-type";
 import style from "../styles/style";
@@ -21,69 +19,68 @@ const PokemonForm = ({pokemon}) => {
         'Poison', 'Fée', 'Vol', 'Combat', 'Psy'
     ];
     return (
-        <Paper className={classes.paperForm}>
-            <Typography variant="h5">Edit : {pokemon.name}</Typography>
-            <form className={classes.form} noValidate>
-                <Grid container direction="column" spacing={4}>
-                    <Grid item style={{textAlign: "center"}}>
-                        <img src={pokemon.picture} alt=""/>
-                    </Grid>
-                    <Grid item>
-                        <TextField
-                            fullWidth
-                            label="Name"
-                            defaultValue={pokemon.name}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <TextField
-                            fullWidth
-                            label="HP"
-                            defaultValue={pokemon.hp}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <TextField
-                            fullWidth
-                            label="CP"
-                            defaultValue={pokemon.cp}
-                        />
-                    </Grid>
-                    <Grid item>
-                        <FormGroup row>
-                            {types.map((type) => {
-                                return (
-                                    <FormControlLabel
-                                        key={type}
-                                        control={<Checkbox/>}
-                                        label={<Chip key={type}
-                                                     style={{color: "white", backgroundColor: formatType(type)}}
-                                                     label={type}
-                                        />}
-                                    />
-                                );
-                            })}
-                        </FormGroup>
-                    </Grid>
-                    <Grid item>
-                        <ButtonGroup variant="contained">
-                            <Button
-                                color="primary"
-                                startIcon={<SaveIcon/>}
-                            >
-                                Save
-                            </Button>
-                            <Button
-                                color="secondary"
-                                startIcon={<CancelIcon/>}
-                            >
-                                Cancel
-                            </Button>
-                        </ButtonGroup>
-                    </Grid>
+        <form className={classes.form} noValidate>
+            <Grid container direction="column" spacing={4}>
+                <Grid item style={{textAlign: "center"}}>
+                    <img src={pokemon.picture} alt=""/>
                 </Grid>
-            </form>
-        </Paper>
+                <Grid item>
+                    <TextField
+                        fullWidth
+                        label="Name"
+                        defaultValue={pokemon.name}
+                    />
+                </Grid>
+                <Grid item>
+                    <TextField
+                        fullWidth
+                        label="HP"
+                        defaultValue={pokemon.hp}
+                        type="number"
+                    />
+                </Grid>
+                <Grid item>
+                    <TextField
+                        fullWidth
+                        label="CP"
+                        defaultValue={pokemon.cp}
+                        type="number"
+                    />
+                </Grid>
+                <Grid item>
+                    <FormGroup row>
+                        {types.map((type) => {
+                            return (
+                                <FormControlLabel
+                                    key={type}
+                                    control={<Checkbox/>}
+                                    label={<Chip key={type}
+                                                 style={{color: "white", backgroundColor: formatType(type)}}
+                                                 label={type}
+                                    />}
+                                />
+                            );
+                        })}
+                    </FormGroup>
+                </Grid>
+                <Grid item>
+                    <ButtonGroup variant="contained">
+                        <Button
+                            color="primary"
+                            startIcon={<SaveIcon/>}
+                        >
+                            Save
+                        </Button>
+                        <Button
+                            color="secondary"
+                            startIcon={<CancelIcon/>}
+                        >
+                            Cancel
+                        </Button>
+                    </ButtonGroup>
+                </Grid>
+            </Grid>
+        </form>
     );
 }
 
