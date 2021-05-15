@@ -57,11 +57,69 @@ const PokemonForm = ({pokemon}) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        history.push(`/pokemons/${pokemon.id}`)
+        const isFormValid = validateForm();
+        if (isFormValid) {
+            history.push(`/pokemons/${pokemon.id}`)
+        }
+
     }
 
     const handleCancel = () => {
         history.push(`/pokemons/${pokemon.id}`)
+    }
+
+    const validateForm = () => {
+        let newForm = form;
+
+        // Validator name
+        if (!/^[a-zA-Z]{3,25}$/.test(form.name.value)) {
+            const errorMsg = "The name is required (1-25).";
+            const newField = {value: form.name.value, error: errorMsg, isValid: false};
+            newForm = {...newForm, ...{name: newField}}
+        } else {
+            const newField = {value: form.name.value, error: "", isValid: true};
+            newForm = {...newForm, ...{name: newField}}
+        }
+
+        // Validator hp
+        if (!/^[0-9]{1,3}$/.test(form.hp.value)) {
+            const errorMsg = "The hp must be between 0 and 999.";
+            const newField = {value: form.hp.value, error: errorMsg, isValid: false};
+            newForm = {...newForm, ...{hp: newField}}
+        } else {
+            const newField = {value: form.hp.value, error: "", isValid: true};
+            newForm = {...newForm, ...{hp: newField}}
+        }
+
+        // Validator cp
+        if (!/^[0-9]{1,2}$/.test(form.cp.value)) {
+            const errorMsg = "The cp must be between 0 and 99.";
+            const newField = {value: form.cp.value, error: errorMsg, isValid: false};
+            newForm = {...newForm, ...{cp: newField}}
+        } else {
+            const newField = {value: form.cp.value, error: "", isValid: true};
+            newForm = {...newForm, ...{cp: newField}}
+        }
+
+        setForm(newForm);
+        return newForm.name.isValid && newForm.hp.isValid && newForm.cp.isValid;
+    }
+
+    const isTypesValid = (type) => {
+        // si le user selectionne une case sinon il peut choisir d'avoir aucun type
+        // en gros , il faut au moins un type valide
+        if (form.types.value.length === 1 && hasType(type)) {
+            return false;
+        }
+
+        // si le user selectionne 3 case , il faut l'empecher de selectionner d'autre case
+        // il peut deselectionne les case grace a hasType
+        // voir les case a cocher pour comprendre
+        if (form.types.value.length >= 3 && !hasType(type)) {
+            return false;
+        }
+
+        return true;
     }
 
     return (
@@ -116,6 +174,7 @@ const PokemonForm = ({pokemon}) => {
                                         value={type}
                                         checked={hasType(type)}
                                         onChange={e => selectType(type, e)}
+                                        disabled={!isTypesValid(type)}
                                     />}
                                     label={<Chip key={type}
                                                  style={{color: "white", backgroundColor: formatType(type)}}
