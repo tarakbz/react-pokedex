@@ -31,6 +31,9 @@ const style = makeStyles(() => ({
     },
     paperForm: {
         padding: theme.spacing(4)
+    },
+    buttonGroupBottom: {
+        marginTop : theme.spacing(4)
     }
 }));
 

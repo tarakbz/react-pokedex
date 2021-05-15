@@ -75,27 +75,23 @@ export default function PokemonDetails() {
                                             {formatDate(pokemon.created)}
                                         </TableCell>
                                     </TableRow>
-                                    <TableRow className={classes.tableRow}>
-                                        <TableCell colSpan={2}>
-                                            <ButtonGroup variant="contained">
-                                                <Button
-                                                    color="primary"
-                                                    startIcon={<ArrowBackIos/>}
-                                                    component={Link} to="/">
-                                                    Return to pokedex
-                                                </Button>
-                                                <Button
-                                                    color="secondary"
-                                                    startIcon={<EditIcon/>}
-                                                    component={Link} to={`/pokemons/edit/${id}`}>
-                                                    Edit
-                                                </Button>
-                                            </ButtonGroup>
-                                        </TableCell>
-                                    </TableRow>
                                 </TableBody>
                             </Table>
                         </TableContainer>
+                        <ButtonGroup variant="contained" className={classes.buttonGroupBottom}>
+                            <Button
+                                color="primary"
+                                startIcon={<ArrowBackIos/>}
+                                component={Link} to="/">
+                                Return to pokedex
+                            </Button>
+                            <Button
+                                color="secondary"
+                                startIcon={<EditIcon/>}
+                                component={Link} to={`/pokemons/edit/${id}`}>
+                                Edit
+                            </Button>
+                        </ButtonGroup>
                     </Paper>
                 )
                 :

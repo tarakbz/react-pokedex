@@ -39,6 +39,19 @@ const PokemonForm = ({pokemon}) => {
         setForm({...form, ...newField});
     }
 
+    const selectType = (type, e) => {
+        const checked = e.target.checked;
+        let newField;
+        if (checked) {
+            const newTypes = form.types.value.concat([type]);
+            newField = {value: newTypes};
+        } else {
+            const newTypes = form.types.value.filter((currentType) => currentType !== type);
+            newField = {value: newTypes};
+        }
+        setForm({...form, ...{types: newField}});
+    }
+
     return (
         <form className={classes.form} noValidate>
             <Grid container direction="column" spacing={4}>
@@ -80,7 +93,11 @@ const PokemonForm = ({pokemon}) => {
                             return (
                                 <FormControlLabel
                                     key={type}
-                                    control={<Checkbox value={type} checked={hasType(type)}/>}
+                                    control={<Checkbox
+                                        value={type}
+                                        checked={hasType(type)}
+                                        onChange={e => selectType(type, e)}
+                                    />}
                                     label={<Chip key={type}
                                                  style={{color: "white", backgroundColor: formatType(type)}}
                                                  label={type}
