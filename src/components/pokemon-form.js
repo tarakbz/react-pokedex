@@ -38,7 +38,7 @@ const PokemonForm = ({pokemon}) => {
     const handleInputChange = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value;
-        const newField = {[fieldName]: {value: fieldValue}};
+        const newField = {[fieldName]: {value: fieldValue , isValid: true}};
         setForm({...form, ...newField});
     }
 
@@ -73,7 +73,7 @@ const PokemonForm = ({pokemon}) => {
 
         // Validator name
         if (!/^[a-zA-Z]{3,25}$/.test(form.name.value)) {
-            const errorMsg = "The name is required (1-25).";
+            const errorMsg = "The name is required (3-25) and without number or special character.";
             const newField = {value: form.name.value, error: errorMsg, isValid: false};
             newForm = {...newForm, ...{name: newField}}
         } else {
@@ -140,6 +140,8 @@ const PokemonForm = ({pokemon}) => {
                         value={form.name.value}
                         onChange={e => handleInputChange(e)}
                         required
+                        error={!form.name.isValid}
+                        helperText={form.name.error}
                     />
                 </Grid>
                 <Grid item>
@@ -151,6 +153,8 @@ const PokemonForm = ({pokemon}) => {
                         type="number"
                         onChange={e => handleInputChange(e)}
                         required
+                        error={!form.hp.isValid}
+                        helperText={form.hp.error}
                     />
                 </Grid>
                 <Grid item>
@@ -162,6 +166,8 @@ const PokemonForm = ({pokemon}) => {
                         type="number"
                         onChange={e => handleInputChange(e)}
                         required
+                        error={!form.cp.isValid}
+                        helperText={form.cp.error}
                     />
                 </Grid>
                 <Grid item>
