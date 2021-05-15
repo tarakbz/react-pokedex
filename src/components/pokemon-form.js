@@ -12,6 +12,7 @@ import style from "../styles/style";
 import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
 const PokemonForm = ({pokemon}) => {
     const classes = style();
@@ -22,6 +23,8 @@ const PokemonForm = ({pokemon}) => {
         cp: {value: pokemon.cp, isValid: true},
         types: {value: pokemon.types, isValid: true},
     });
+
+    const history = useHistory();
 
     const types = [
         'Plante', 'Feu', 'Eau', 'Insecte', 'Normal', 'Electrik',
@@ -52,8 +55,21 @@ const PokemonForm = ({pokemon}) => {
         setForm({...form, ...{types: newField}});
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        history.push(`/pokemons/${pokemon.id}`)
+    }
+
+    const handleCancel = () => {
+        history.push(`/pokemons/${pokemon.id}`)
+    }
+
     return (
-        <form className={classes.form} noValidate>
+        <form
+            onSubmit={(e) => handleSubmit(e)}
+            className={classes.form}
+            noValidate
+        >
             <Grid container direction="column" spacing={4}>
                 <Grid item style={{textAlign: "center"}}>
                     <img src={pokemon.picture} alt=""/>
@@ -65,6 +81,7 @@ const PokemonForm = ({pokemon}) => {
                         name="name"
                         value={form.name.value}
                         onChange={e => handleInputChange(e)}
+                        required
                     />
                 </Grid>
                 <Grid item>
@@ -75,6 +92,7 @@ const PokemonForm = ({pokemon}) => {
                         value={form.hp.value}
                         type="number"
                         onChange={e => handleInputChange(e)}
+                        required
                     />
                 </Grid>
                 <Grid item>
@@ -85,6 +103,7 @@ const PokemonForm = ({pokemon}) => {
                         value={form.cp.value}
                         type="number"
                         onChange={e => handleInputChange(e)}
+                        required
                     />
                 </Grid>
                 <Grid item>
@@ -112,12 +131,14 @@ const PokemonForm = ({pokemon}) => {
                         <Button
                             color="primary"
                             startIcon={<SaveIcon/>}
+                            type="submit"
                         >
                             Save
                         </Button>
                         <Button
                             color="secondary"
                             startIcon={<CancelIcon/>}
+                            onClick={() => handleCancel()}
                         >
                             Cancel
                         </Button>
