@@ -1,21 +1,34 @@
 import {useParams} from "react-router-dom";
-import usePokemon from "../hooks/pokemon.hook";
 import PokemonForm from "../components/pokemon-form";
 import {Divider, LinearProgress, Paper, Typography} from "@material-ui/core";
 import style from "../styles/style";
+import {useEffect, useState} from "react";
+import PokemonService from "../services/pokemon-service";
 
 
 const PokemonEdit = () => {
-    const classes = style();
+
     let {id} = useParams();
-    const [pokemon, loading] = usePokemon(id);
+
+    const classes = style();
+
+    const [loaded, setLoaded] = useState(false);
+    const [pokemon, setPokemon] = useState();
+
+    useEffect(() => {
+        PokemonService.getPokemon(id).then(pokemon => {
+            setPokemon(pokemon)
+            setLoaded(true)
+        });
+    }, [id]);
+
     return (
         <>
-            {loading ?
+            {loaded ?
                 (
                     <Paper className={classes.paperForm}>
                         <Typography align="center" variant="h2">Edit {pokemon.name}</Typography>
-                        <Divider />
+                        <Divider/>
                         <PokemonForm pokemon={pokemon}/>
                     </Paper>
                 )

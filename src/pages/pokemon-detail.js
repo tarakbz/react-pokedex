@@ -12,23 +12,34 @@ import {Link, useParams} from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import formatDate from "../helpers/format-date";
 import formatType from "../helpers/format-type";
-import usePokemon from "../hooks/pokemon.hook";
 import style from "../styles/style";
 import {ArrowBackIos} from "@material-ui/icons";
+import {useEffect, useState} from "react";
+import PokemonService from "../services/pokemon-service";
 
 export default function PokemonDetails() {
 
     let {id} = useParams();
-    const [pokemon, loading] = usePokemon(id);
+
     const classes = style();
+
+    const [loaded, setLoaded] = useState(false);
+    const [pokemon, setPokemon] = useState();
+
+    useEffect(() => {
+        PokemonService.getPokemon(id).then(pokemon => {
+            setPokemon(pokemon)
+            setLoaded(true)
+        });
+    }, [id]);
 
     return (
         <>
-            {loading ?
+            {loaded ?
                 (
                     <Paper className={classes.paperForm}>
                         <Typography align="center" variant="h2">{pokemon.name}</Typography>
-                        <Divider />
+                        <Divider/>
                         <Grid container direction="column" spacing={4}>
                             <Grid item style={{textAlign: "center"}}>
                                 <img src={pokemon.picture} alt=""/>

@@ -1,14 +1,24 @@
 import {Grid, LinearProgress} from "@material-ui/core";
 import PokemonCard from "../components/pokemon-card";
-import usePokemons from "../hooks/pokemons.hook";
+
+import PokemonService from "../services/pokemon-service";
+import {useEffect, useState} from "react";
 
 export default function PokemonList() {
 
-    const [pokemons, loading] = usePokemons()
+    const [loaded, setLoaded] = useState(false)
+    const [pokemons, setPokemons] = useState([])
+
+    useEffect(() => {
+      PokemonService.getPokemons().then(pokemons => {
+          setPokemons(pokemons)
+          setLoaded(true)
+      });
+    }, []);
 
     return (
         <>
-            {loading ?
+            {loaded ?
                 (
 
                     <Grid container spacing={4}>
