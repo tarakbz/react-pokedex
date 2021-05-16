@@ -12,9 +12,15 @@ export default class PokemonService {
 
     static getPokemon(id) {
         return fetch(`https://limitless-reef-40594.herokuapp.com/api/pokemons/${id}`)
-            .then(response => response.json())
-            .then(json => json.data)
+            .then(response => {
+                if (response.status !== 200) {
+                    return null;
+                }
+                return response.json()
+                    .then(json => json.data)
+            })
             .catch(error => this.handleError(error));
+
     }
 
     static handleError(error) {

@@ -8,7 +8,7 @@ import {
     TableContainer,
     TableRow, Typography
 } from "@material-ui/core";
-import {Link, useParams} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
 import formatDate from "../helpers/format-date";
 import formatType from "../helpers/format-type";
@@ -21,6 +21,8 @@ export default function PokemonDetails() {
 
     let {id} = useParams();
 
+    const history = useHistory();
+
     const classes = style();
 
     const [loaded, setLoaded] = useState(false);
@@ -28,6 +30,9 @@ export default function PokemonDetails() {
 
     useEffect(() => {
         PokemonService.getPokemon(id).then(pokemon => {
+            if (!pokemon) {
+                history.replace("/404")
+            }
             setPokemon(pokemon)
             setLoaded(true)
         });
