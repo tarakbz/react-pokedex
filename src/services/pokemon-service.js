@@ -37,6 +37,18 @@ export default class PokemonService {
             .catch(error => this.handleError(error));
     }
 
+    static deletePokemon(pokemon) {
+        return fetch(`${this.url}${pokemon.id}`,
+            {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'}
+            }
+        )
+            .then(response => response.json())
+            .then(json => json.data)
+            .catch(error => this.handleError(error));
+    }
+
     static handleError(error) {
         console.error(error);
     }

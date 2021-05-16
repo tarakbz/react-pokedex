@@ -10,6 +10,7 @@ import {
 import formatType from "../helpers/format-type";
 import style from "../styles/style";
 import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 import CancelIcon from '@material-ui/icons/Cancel';
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
@@ -70,6 +71,14 @@ const PokemonForm = ({pokemon}) => {
         }
 
     }
+
+    const handleDelete = e => {
+        e.preventDefault();
+        PokemonService.deletePokemon(pokemon).then(() => {
+            history.push(`/`)
+        });
+    }
+
 
     const handleCancel = () => {
         history.push(`/pokemons/${pokemon.id}`)
@@ -199,22 +208,36 @@ const PokemonForm = ({pokemon}) => {
                     </FormGroup>
                 </Grid>
                 <Grid item>
-                    <ButtonGroup variant="contained">
-                        <Button
-                            color="primary"
-                            startIcon={<SaveIcon/>}
-                            type="submit"
-                        >
-                            Save
-                        </Button>
-                        <Button
-                            color="secondary"
-                            startIcon={<CancelIcon/>}
-                            onClick={() => handleCancel()}
-                        >
-                            Cancel
-                        </Button>
-                    </ButtonGroup>
+                    <Grid container   justify="space-between"
+                    >
+                        <Grid item>
+                            <ButtonGroup variant="contained">
+                                <Button
+                                    color="primary"
+                                    startIcon={<SaveIcon/>}
+                                    type="submit"
+                                >
+                                    Save
+                                </Button>
+                                <Button
+                                    startIcon={<CancelIcon/>}
+                                    onClick={() => handleCancel()}
+                                >
+                                    Cancel
+                                </Button>
+                            </ButtonGroup>
+                        </Grid>
+                        <Grid item>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                startIcon={<DeleteIcon/>}
+                                onClick={(e) => handleDelete(e)}
+                            >
+                                Delete
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </form>
