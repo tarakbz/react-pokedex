@@ -36,7 +36,7 @@ export default function PokemonDetails() {
             setPokemon(pokemon)
             setLoaded(true)
         });
-    }, [id]);
+    }, [id, history]);
 
     return (
         <>
