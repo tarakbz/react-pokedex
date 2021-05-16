@@ -13,6 +13,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import {useState} from "react";
 import {useHistory} from "react-router-dom";
+import PokemonService from "../services/pokemon-service";
 
 const PokemonForm = ({pokemon}) => {
     const classes = style();
@@ -28,7 +29,7 @@ const PokemonForm = ({pokemon}) => {
 
     const types = [
         'Plante', 'Feu', 'Eau', 'Insecte', 'Normal', 'Electrik',
-        'Poison', 'Fée', 'Vol', 'Combat', 'Psy'
+        'Poison', 'Fée', 'Vol', 'Combat', 'Psy'
     ];
 
     const hasType = (type) => {
@@ -38,7 +39,7 @@ const PokemonForm = ({pokemon}) => {
     const handleInputChange = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value;
-        const newField = {[fieldName]: {value: fieldValue , isValid: true}};
+        const newField = {[fieldName]: {value: fieldValue, isValid: true}};
         setForm({...form, ...newField});
     }
 
@@ -59,7 +60,13 @@ const PokemonForm = ({pokemon}) => {
         e.preventDefault();
         const isFormValid = validateForm();
         if (isFormValid) {
-            history.push(`/pokemons/${pokemon.id}`)
+            pokemon.name = form.name.value;
+            pokemon.hp = form.hp.value;
+            pokemon.cp = form.cp.value;
+            pokemon.types = form.types.value;
+            PokemonService.updatePokemon(pokemon).then(() => {
+                history.push(`/pokemons/${pokemon.id}`)
+            });
         }
 
     }
