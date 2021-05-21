@@ -16,10 +16,11 @@ import {useState} from "react";
 import {useHistory} from "react-router-dom";
 import PokemonService from "../services/pokemon-service";
 
-const PokemonForm = ({pokemon}) => {
+const PokemonForm = ({pokemon, isEditForm}) => {
     const classes = style();
 
     const [form, setForm] = useState({
+        picture: {value: pokemon.picture, isValid: true},
         name: {value: pokemon.name, isValid: true},
         hp: {value: pokemon.hp, isValid: true},
         cp: {value: pokemon.cp, isValid: true},
@@ -32,6 +33,10 @@ const PokemonForm = ({pokemon}) => {
         'Plante', 'Feu', 'Eau', 'Insecte', 'Normal', 'Electrik',
         'Poison', 'Fée', 'Vol', 'Combat', 'Psy'
     ];
+
+    const isAddForm = () => {
+        return !isEditForm;
+    }
 
     const hasType = (type) => {
         return form.types.value.includes(type);
@@ -61,15 +66,29 @@ const PokemonForm = ({pokemon}) => {
         e.preventDefault();
         const isFormValid = validateForm();
         if (isFormValid) {
+            pokemon.picture = form.picture.value;
             pokemon.name = form.name.value;
             pokemon.hp = form.hp.value;
             pokemon.cp = form.cp.value;
             pokemon.types = form.types.value;
-            PokemonService.updatePokemon(pokemon).then(() => {
-                history.push(`/pokemons/${pokemon.id}`)
-            });
+            isEditForm ? updatePokemon() : addPokemon();
         }
+    }
 
+    const addPokemon = () => {
+        PokemonService.addPokemon(pokemon).then(() => {
+            history.push(`/`)
+        });
+    }
+
+    const updatePokemon = () => {
+        PokemonService.updatePokemon(pokemon).then(() => {
+            history.push(`/pokemons/${pokemon.id}`)
+        });
+    }
+
+    const handleCancel = () => {
+        history.push(`/pokemons/${pokemon.id}`)
     }
 
     const handleDelete = e => {
@@ -79,13 +98,22 @@ const PokemonForm = ({pokemon}) => {
         });
     }
 
-
-    const handleCancel = () => {
-        history.push(`/pokemons/${pokemon.id}`)
-    }
-
     const validateForm = () => {
         let newForm = form;
+
+        // Validate picture
+        if (isAddForm()) {
+            const start = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/";
+            const end = ".png";
+            if (!form.picture.value.startsWith(start) || !(form.picture.value.endsWith(end))) {
+                const errorMsg = "Url of picture not valid.";
+                const newField = {value: form.picture.value, error: errorMsg, isValid: false};
+                newForm = {...newForm, ...{picture: newField}}
+            } else {
+                const newField = {value: form.picture.value, error: "", isValid: true};
+                newForm = {...newForm, ...{picture: newField}}
+            }
+        }
 
         // Validator name
         if (!/^[a-zA-Z]{3,25}$/.test(form.name.value)) {
@@ -98,8 +126,8 @@ const PokemonForm = ({pokemon}) => {
         }
 
         // Validator hp
-        if (!/^[0-9]{1,3}$/.test(form.hp.value)) {
-            const errorMsg = "The hp must be between 0 and 999.";
+        if (!/^[0-9]{1,2}$/.test(form.hp.value)) {
+            const errorMsg = "The hp must be between 0 and 99.";
             const newField = {value: form.hp.value, error: errorMsg, isValid: false};
             newForm = {...newForm, ...{hp: newField}}
         } else {
@@ -118,7 +146,7 @@ const PokemonForm = ({pokemon}) => {
         }
 
         setForm(newForm);
-        return newForm.name.isValid && newForm.hp.isValid && newForm.cp.isValid;
+        return newForm.picture.isValid && newForm.name.isValid && newForm.hp.isValid && newForm.cp.isValid;
     }
 
     const isTypesValid = (type) => {
@@ -145,9 +173,24 @@ const PokemonForm = ({pokemon}) => {
             noValidate
         >
             <Grid container direction="column" spacing={4}>
-                <Grid item style={{textAlign: "center"}}>
-                    <img src={pokemon.picture} alt=""/>
-                </Grid>
+                {isEditForm ?
+                    <Grid item style={{textAlign: "center"}}>
+                        <img src={pokemon.picture} alt=""/>
+                    </Grid>
+                    :
+                    <Grid item>
+                        <TextField
+                            fullWidth
+                            label="Picture"
+                            name="picture"
+                            value={form.picture.value}
+                            onChange={e => handleInputChange(e)}
+                            required
+                            error={!form.picture.isValid}
+                            helperText={form.picture.isValid ? "Ex : https://assets.pokemon.com/assets/cms2/img/pokedex/detail/026.png" : form.picture.error}
+                        />
+                    </Grid>
+                }
                 <Grid item>
                     <TextField
                         fullWidth
@@ -208,7 +251,7 @@ const PokemonForm = ({pokemon}) => {
                     </FormGroup>
                 </Grid>
                 <Grid item>
-                    <Grid container   justify="space-between"
+                    <Grid container justify="space-between"
                     >
                         <Grid item>
                             <ButtonGroup variant="contained">
@@ -227,6 +270,7 @@ const PokemonForm = ({pokemon}) => {
                                 </Button>
                             </ButtonGroup>
                         </Grid>
+                        {isEditForm &&
                         <Grid item>
                             <Button
                                 variant="contained"
@@ -237,6 +281,7 @@ const PokemonForm = ({pokemon}) => {
                                 Delete
                             </Button>
                         </Grid>
+                        }
                     </Grid>
                 </Grid>
             </Grid>

@@ -8,6 +8,9 @@ const style = makeStyles(() => ({
         marginTop : theme.spacing(4),
         marginBottom : theme.spacing(4)
     },
+    titleMenu :{
+        flexGrow: 1,
+    },
     menuButton: {
         color: "white"
     },

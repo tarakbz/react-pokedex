@@ -7,6 +7,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import AddIcon from '@material-ui/icons/Add';
 import {ThemeProvider} from '@material-ui/core/styles';
 
 import PokemonList from "./pages/pokemon-list";
@@ -15,6 +16,7 @@ import PageNotFound from "./pages/page-not-found";
 import PokemonEdit from "./pages/pokemon-edit";
 import theme from "./styles/theme";
 import style from "./styles/style";
+import PokemonAdd from "./pages/pokemon-add";
 
 function App() {
 
@@ -27,17 +29,24 @@ function App() {
                 <Container>
                     <AppBar className={classes.appBar}>
                         <Toolbar>
-                            <IconButton  component={Link}  to={"/"} className={classes.menuButton}  edge="start" aria-label="menu">
-                                <HomeIcon />
+                            <IconButton  component={Link} to={"/"} className={classes.menuButton} edge="start"
+                                        aria-label="menu">
+                                <HomeIcon/>
                             </IconButton>
-                            <Typography variant="h6" color="inherit" noWrap>
+                            <Typography className={classes.titleMenu} variant="h6" color="inherit" noWrap>
                                 POKEDEX
                             </Typography>
+                            <IconButton component={Link} to={"/pokemons/add"}  edge="end" color="inherit">
+                                <AddIcon/>
+                            </IconButton>
                         </Toolbar>
                     </AppBar>
                     <Switch>
                         <Route exact path="/">
                             <PokemonList/>
+                        </Route>
+                        <Route exact path="/pokemons/add">
+                            <PokemonAdd/>
                         </Route>
                         <Route exact path="/pokemons/:id">
                             <PokemonDetails/>

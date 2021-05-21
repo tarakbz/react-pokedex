@@ -29,7 +29,7 @@ const PokemonEdit = () => {
                     <Paper className={classes.paperForm}>
                         <Typography align="center" variant="h2">Edit {pokemon.name}</Typography>
                         <Divider/>
-                        <PokemonForm pokemon={pokemon}/>
+                        <PokemonForm pokemon={pokemon} isEditForm={true}/>
                     </Paper>
                 )
                 :

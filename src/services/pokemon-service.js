@@ -24,6 +24,19 @@ export default class PokemonService {
             .catch(error => this.handleError(error));
     }
 
+    static addPokemon(pokemon) {
+        return fetch(`${this.url}`,
+            {
+                method: 'POST',
+                body: JSON.stringify(pokemon),
+                headers: {'Content-Type': 'application/json'}
+            }
+        )
+            .then(response => response.json())
+            .then(json => json.data)
+            .catch(error => this.handleError(error));
+    }
+
     static updatePokemon(pokemon) {
         return fetch(`${this.url}${pokemon.id}`,
             {

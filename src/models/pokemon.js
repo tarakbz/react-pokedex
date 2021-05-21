@@ -14,7 +14,7 @@ export default class Pokemon {
      */
     constructor(
         id,
-        hp = 100,
+        hp = 99,
         cp = 10,
         name = 'name',
         picture = 'http://...',
