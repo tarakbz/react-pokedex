@@ -137,7 +137,7 @@ const PokemonForm = ({pokemon, isEditForm}) => {
 
         // Validator cp
         if (!/^[0-9]{1,2}$/.test(form.cp.value)) {
-            const errorMsg = "The cp must be between 0 and 99.";
+            const errorMsg = "The cp must be between 0 and 9.";
             const newField = {value: form.cp.value, error: errorMsg, isValid: false};
             newForm = {...newForm, ...{cp: newField}}
         } else {
@@ -187,7 +187,7 @@ const PokemonForm = ({pokemon, isEditForm}) => {
                             onChange={e => handleInputChange(e)}
                             required
                             error={!form.picture.isValid}
-                            helperText={form.picture.isValid ? "Ex : https://assets.pokemon.com/assets/cms2/img/pokedex/detail/026.png" : form.picture.error}
+                            helperText={form.picture.isValid ? "Ex : https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png" : form.picture.error}
                         />
                     </Grid>
                 }
@@ -214,6 +214,7 @@ const PokemonForm = ({pokemon, isEditForm}) => {
                         required
                         error={!form.hp.isValid}
                         helperText={form.hp.error}
+                        inputProps={{min: 0, max: 99}}
                     />
                 </Grid>
                 <Grid item>
@@ -227,6 +228,7 @@ const PokemonForm = ({pokemon, isEditForm}) => {
                         required
                         error={!form.cp.isValid}
                         helperText={form.cp.error}
+                        inputProps={{min: 0, max: 10}}
                     />
                 </Grid>
                 <Grid item>

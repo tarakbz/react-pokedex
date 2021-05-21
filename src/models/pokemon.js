@@ -14,11 +14,11 @@ export default class Pokemon {
      */
     constructor(
         id,
-        hp = 99,
-        cp = 10,
-        name = 'name',
-        picture = 'http://...',
-        types = ['Normal'],
+        hp = "",
+        cp = "",
+        name = "",
+        picture = "",
+        types = ["Normal"],
         created = new Date()
     ) {
         this.id = id;
