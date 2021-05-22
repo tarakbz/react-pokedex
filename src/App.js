@@ -17,6 +17,7 @@ import PokemonEdit from "./pages/pokemon-edit";
 import theme from "./styles/theme";
 import style from "./styles/style";
 import PokemonAdd from "./pages/pokemon-add";
+import PokemonSearch from "./components/pokemon-search";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <CssBaseline/>
             <ThemeProvider theme={theme}>
                 <Container>
+
                     <AppBar className={classes.appBar}>
                         <Toolbar>
                             <IconButton  component={Link} to={"/"} className={classes.menuButton} edge="start"
@@ -36,6 +38,7 @@ function App() {
                             <Typography className={classes.titleMenu} variant="h6" color="inherit" noWrap>
                                 POKEDEX
                             </Typography>
+                            <PokemonSearch />
                             <IconButton component={Link} to={"/pokemons/add"}  edge="end" color="inherit">
                                 <AddIcon/>
                             </IconButton>

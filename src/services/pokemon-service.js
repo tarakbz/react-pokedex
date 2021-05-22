@@ -12,6 +12,13 @@ export default class PokemonService {
             .catch(error => this.handleError(error));
     }
 
+    static searchPokemons(term) {
+        return fetch(`${this.url}?name=${term}`)
+            .then(response => response.json())
+            .then(json => json.data)
+            .catch(error => this.handleError(error));
+    }
+
     static getPokemon(id) {
         return fetch(`${this.url}${id}`)
             .then(response => {
