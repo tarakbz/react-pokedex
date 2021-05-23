@@ -18,6 +18,7 @@ import theme from "./styles/theme";
 import style from "./styles/style";
 import PokemonAdd from "./pages/pokemon-add";
 import PokemonSearch from "./components/pokemon-search";
+import Login from "./pages/login";
 
 function App() {
 
@@ -46,6 +47,9 @@ function App() {
                     </AppBar>
                     <Switch>
                         <Route exact path="/">
+                            <Login/>
+                        </Route>
+                        <Route exact path="/pokemons">
                             <PokemonList/>
                         </Route>
                         <Route exact path="/pokemons/add">
