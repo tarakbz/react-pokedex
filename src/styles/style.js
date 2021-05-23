@@ -4,7 +4,7 @@ import {fade, makeStyles} from '@material-ui/core/styles';
 
 const style = makeStyles(() => ({
     appBar: {
-        position: "static",
+        position: "relative",
         marginTop: theme.spacing(4),
         marginBottom: theme.spacing(4)
     },
