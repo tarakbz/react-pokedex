@@ -5,7 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import {Link} from "react-router-dom";
 
 import PokemonService from "../services/pokemon-service";
-import style from "../styles/style";
+import style from "./pokemon-search-css";
 import {Paper} from "@material-ui/core";
 
 
@@ -48,8 +48,8 @@ const PokemonSearch = () => {
                             placeholder="Search..."
                             {...params.inputProps}
                             classes={{
-                                root: classes.inputSearchRoot,
-                                input: classes.inputSearchInput,
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
                             }}
                             value={term}
                             onChange={e => handleInputChange(e)}
